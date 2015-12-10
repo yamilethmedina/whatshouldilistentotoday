@@ -1,0 +1,106 @@
+body {
+    font-family: Candara,Calibri,Arial,sans-serif;
+    background-color: #ededff;
+    color: #101101;
+
+}
+
+
+h1 {
+    font-size: 30px;
+    color: #b04d5f;
+}
+
+h2 {
+    font-size: 18px;
+    color: #b04d5f;
+}
+
+#container {
+    margin: auto;
+    overflow: auto;
+}
+
+/*p {*/
+/*    color: #b04d5f;*/
+/*    width: 300px;*/
+/*    height: 250px;*/
+/*    margin: 5px;*/
+/*    padding: 15px;*/
+/*    float: right;*/
+/*    position: fixed;*/
+/*}*/
+
+
+.cover {
+    width: 300px;
+    height: 300px;
+    display: inline-block;
+    background-size: cover;
+}
+
+#header {
+
+}
+
+#footer {
+    font-size: 10px;
+    color: #c2c2f0;
+    clear: both;
+}
+
+#left {
+    width: 250px;
+    height: 250px;
+    margin: 5px;
+    padding: 15px;
+    float: left;
+   
+}
+
+#right {
+    width: 300px;
+    height: 250px;
+    margin: 5px;
+    padding: 15px;
+    float: right;
+   
+}
+
+.media {
+    padding: 10px;
+}
+.media, .media-body {
+    overflow:hidden; 
+    _overflow:visible; 
+    zoom:1;
+}
+
+.related-artists {
+    float:left; 
+    margin-right: 10px; 
+    background-size: 100px;
+}
+
+button {
+  font-family: Candara,Calibri,Arial,sans-serif;
+  color: #f8fff4;
+  font-size: 14px;
+  background: #b04d5f;
+  
+  text-decoration: none;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #c591ab;
+  text-decoration: none;
+}
+
+a:link {
+    color: indigo;    
+}
+
+#email {
+    padding-bottom: 20px;
+}    

@@ -1,0 +1,3 @@
+What Do I Listen To Today? is a simple web app that uses JavaScript, JSON, HTML, and CSS.
+
+The main functionality involves taking user input (the name of a musical artist or band) and sending it to the Spotify API. Since Spotify uses unique artist IDs to perform other searches, I first have to retrieve that ID. Afterward, I use that ID in their standard URL structure to access the list of related artists. This returns an array of JSON output. I iterate over that array to show the top related artists with equal-sized images. The CSS makes this output appear easy to the eye, with two separate boxes for the original artist as well as the related ones.

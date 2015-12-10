@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="author" content="Yami Medina">
+   <meta name="description" content="Find artists like the ones you already like!">
+   <title>What Do I Listen To Today?</title>
+   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
+   <link rel="stylesheet" href="style.css" />
+   </head>
+  <body>
+
+  <script src="../bundle.js"></script>
+  <div class="container">
+  <div id="left">
+   <div id="header">
+      <h1>What Do I Listen To Today?</h1>
+   </div>
+
+  <form id="s">
+    <input type="text" id="originalartist" placeholder="Enter a band or artist's name">
+    <button id="search">Search</button>
+  </form>
+
+    <h2>If you like this artist...</h1>
+    <div id="artist"></div>
+
+
+<!--    <div id="email">-->
+<!--     <input type="text" id="emailaddress" placeholder="email@address.com">-->
+<!--     <button id="emailbutton">Get this list emailed to you!</button>-->
+<!--     </div>-->
+     <div id="footer">
+     Created by <a href="http://www.yamilethmedina.com">Yami Medina</a>
+   </div>
+    </div>
+    <div id="right">
+    <h2>You might like these related artists:</h2>
+    <div id="related-artist">
+        <!-- <div id="related-artist-track"></div> -->
+    </div>
+
+
+    <div id="playlist"><a href="/login"><button id="spotify">Sign in to your Spotify account to save this playlist!</button></a></div>
+<!-- =======
+    <div id="playlist"><a href="https://accounts.spotify.com/authorize/?client_id=d137fe25b31c4f3ba9e29d85f4e47c66&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09"><button id="spotify">Sign in to your Spotify account to save this playlist!</button></a></div> -->
+
+
+   </div>
+
+  </body>
+  </html>

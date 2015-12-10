@@ -1,0 +1,104 @@
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#sidebar {
+  background: #333333;
+  min-height: 300px;
+  float: left;
+}
+
+#chat {
+  background: white;
+  min-height: 300px;
+  float: right;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding-bottom: 5px;
+}
+
+#chat-form {
+  height: 50px;
+  width: 300px;
+  background: white;
+  clear: right;
+  float: right;
+
+}
+
+#chat ::after {
+  content: "";
+  float: right;
+  width: 300px;
+}
+
+.form-group form-group-md form-control {
+  width: 300px;
+  float: right;
+
+}
+
+#currentchannel {
+  font-size: 16px;
+  color: white;
+  font-weight: bolder;
+  padding-bottom: 30px;
+}
+
+#text-input {
+  width: 300px;
+}
+
+#channels {
+  color: white;
+  font-size: 12px;
+}
+
+#users {
+  padding-top:10px;
+  color: gray;
+  font-size: 12px;
+}
+
+.message-sender {
+
+  font-weight: bold;
+  display: inline;
+  /*float: left;*/
+}
+
+/*.icon {
+  display:inline;
+  width:36px;
+  height:36px;
+  float: left;
+}*/
+
+.timestamp {
+
+  color: lightgrey;
+  font-size: x-small;
+  display: inline;
+}
+.chat-item {
+  margin-top: 5px;
+  margin-bottom:5px;
+
+
+}
+
+.video {
+  width: 400px;
+  height: 300px;
+  max-width: 100%;
+}
+
+.servicename {
+  color: lightgrey;
+}
