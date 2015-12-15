@@ -9,7 +9,8 @@ var port = 3000;
 var client_id = 'd137fe25b31c4f3ba9e29d85f4e47c66';
 var client_secret = '044d1250a8e74f8481b20cf3ad3316ee';
 //var redirect_uri = 'http://localhost:3000/callback';
-var redirect_uri = 'http://localhost:3000/finalproject/callback/';
+//var redirect_uri = 'http://localhost:3000/finalproject/callback/';
+var redirect_uri = '/finalproject/callback/';
 
 var generateRandomString = function(length) {
   var text = '';
