@@ -107,23 +107,23 @@ function searchArtists(originalArtist, callback) {
 
       var counter = 0;
       for (var id in relatedArtists) {
-        relatedArtists[counter] = relatedArtists[id];
-        delete relatedArtists[id];
+        relatedArtistsByCounter = relatedArtists[id];
+        delete relatedArtistsByCounter[id];
         counter++;
       }
       //console.log("1");
         async.times(counter, function(n, next) {
           console.log(n);
-          console.log(relatedArtists[n].id);
+          console.log(relatedArtistsByCounter[n].id);
           s.getArtistTopTracks(relatedArtists[n].id, "US", function (err, data2) {
-            relatedArtists[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
-            relatedArtists[n].uri = data2.tracks[0].uri;
+            relatedArtistsByCounter[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
+            relatedArtistsByCounter[n].uri = data2.tracks[0].uri;
             //console.log(relatedArtists[n].uri);
             //console.log(relatedArtists[n].song);
-            $('#related-artist').append('<p><strong>' + relatedArtists[n].name + '</strong> -- \"' + relatedArtists[n].song + '\"</p>');
+            $('#related-artist').append('<p><strong>' + relatedArtistsByCounter[n].name + '</strong> -- \"' + relatedArtistsByCounter[n].song + '\"</p>');
             //song_uris.push(relatedArtists[n].uri);
             // console.log(song_uris);
-            next(null, relatedArtists[n].uri);
+            next(null, relatedArtistsByCounter[n].uri);
             //needs to be inside async.times and have a null error condition
           });
             // next(related_artists[n].uri)
