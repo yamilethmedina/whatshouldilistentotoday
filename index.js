@@ -48,7 +48,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('http://whatshouldilistentotoday.herokuapp.com/finalproject/callback', function(req, res) {
+app.get('/finalproject/callback', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
