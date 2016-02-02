@@ -1,19 +1,7 @@
-
 var $ = require('jquery');
 var Spotify = require('../node_modules/spotify-web-api-js');
 var s = new Spotify();
 var async = require('async');
-
-
-// // credentials are optional
-// var spotifyApi = new SpotifyWebApi({
-//   clientId : 'd137fe25b31c4f3ba9e29d85f4e47c66',
-//   clientSecret : '044d1250a8e74f8481b20cf3ad3316ee',
-//   redirectUri : 'http://localhost:3000/callback'
-// });
-
-// closure waiting for page to load event
-// window.addEventListener('click', getOriginalArtist)
 
 /**
  * Returns an object with the query parameters passed in the
@@ -25,8 +13,7 @@ function getHashParams() {
       q = window.location.hash.substring(1);
   while ( e = r.exec(q)) {
      hashParams[e[1]] = decodeURIComponent(e[2]);
-     console.log(hashParams[e[1]]);
-  }
+     }
   return hashParams;
 }
 
@@ -52,14 +39,10 @@ $(document).ready(function($) {
 
 
 window.onload = function () {
-    console.log(window.location.hash.substring(1));
+
 var params = getHashParams();
 
 
-           console.log(params); //is an empty object
-
-           console.log(params.access_token); //is undefined
-           console.log(window.location.hash); //nothing after this runs if I move if(params.access_token)...?
 
 
           if (params.access_token) {
@@ -68,47 +51,42 @@ var params = getHashParams();
           s.getMe().then(function(data) {
 
             // and here it goes the user's data!!!
-            console.log(data);
-            console.log(data.id);
+
             user_id = data.id;
 
             s.createPlaylist(user_id, {name: 'Related Artist Playlist'}).then(function(data3) {
-              console.log(data3);
+
               playlist_id = data3.uri;
               playlist_id = playlist_id.substring(33);
-              console.log(playlist_id);
-              console.log(user_id);
+
               var song_uris = JSON.parse(sessionStorage.getItem("song_uris") || "null");
               if (!song_uris) {
-    // There weren't any in storage, populate in another way or set dfeault
+                  // There weren't any in storage, populate in another way or set dfeault
                 }
-              console.log(song_uris); //array is normally empty here
+
 
 
 
 
 
               s.addTracksToPlaylist(user_id, playlist_id, song_uris).then(function(data){
-                  console.log(data);
+
+                    });
+
                 });
+            });
+        }
 
-    });
-
-
-  });
-  }
-
-};
+    };
 
 window.onhashchange = function () {
-          console.log("Hash changed");
-          console.log(window.location.hash.substring(1));
+
       };
 
 
 function searchArtists(originalArtist, callback) {
     $(window).on('hashchange', function() {
-      console.log(window.location.hash);
+
     });
   $.getJSON("https://api.spotify.com/v1/search?type=artist&q=" + originalArtist, function(json) {
 
@@ -134,8 +112,7 @@ function searchArtists(originalArtist, callback) {
       }
 
         async.times(counter, function(n, next) {
-          console.log(n);
-          console.log(relatedArtists[n].id);
+
           s.getArtistTopTracks(relatedArtists[n].id, "US", function (err, data2) {
             relatedArtists[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
             relatedArtists[n].uri = data2.tracks[0].uri;
@@ -150,18 +127,13 @@ function searchArtists(originalArtist, callback) {
         }, function(err, song_uris) {
 
 
-          console.log(song_uris); //array is full here
+
           sessionStorage.setItem("song_uris", JSON.stringify(song_uris));
           // Or localStorage.setItem...
 
+                });
 
-        //   $('#spotify').submit(function(event){
-        //     event.preventDefault();
-        //     });
-
-});
-
-});
-});
-}
+            });
+        });
+    }
 });
