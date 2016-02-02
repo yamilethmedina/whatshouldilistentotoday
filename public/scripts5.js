@@ -36,7 +36,7 @@ var relatedArtists;
 var n;
 var k;
 
-// var song_uris = [];
+var song_uris = [];
 
 
 
@@ -49,47 +49,67 @@ $(document).ready(function($) {
   });
 
 
-  // var params = getHashParams();
 
 
-  // if "access_token" is there, it probably means that we have come back from the
-  // Spotify authentication page, and we now have an access token
-//   if (params.access_token) {
-//     // yuhu!!!
-//     // make sure the Spotify Web API JS wrapper has an access token that it can use
-//     // to fetch the current user's info
-//     s.setAccessToken(params.access_token);
-//     // and now, let's call getMe(). Here we are using a Promise, but we could have
-//     // also used a callback function
-//     s.getMe().then(function(data) {
-//       // and here it goes the user's data!!!
-//       console.log(data);
-//       console.log(data.id);
-//       user_id = data.id;
-//       // playlists are showing up as undefined
-// // spotify:user:tenderoni-:playlist:5NPwZMgVoWo8WDTRdJ23l0
-//       s.createPlaylist(user_id, {name: 'Related Artist Playlist'}).then(function(data3) {
-//         console.log(data3);
-//         playlist_id = data3.uri;
-//         playlist_id = playlist_id.substring(33);
-//         console.log(playlist_id);
-//
-//
-//
-//
-//
-//       //  s.addTracksToPlaylist(user_id, playlist_id, song_uris);
-//
-//       });
-//
-//     });
-//     }
-// });
+window.onload = function () {
+    console.log(window.location.hash.substring(1));
+var params = getHashParams();
 
-// break
+
+           console.log(params); //is an empty object
+
+           console.log(params.access_token); //is undefined
+           console.log(window.location.hash); //nothing after this runs if I move if(params.access_token)...?
+
+
+          if (params.access_token) {
+
+          s.setAccessToken(params.access_token);
+          s.getMe().then(function(data) {
+
+            // and here it goes the user's data!!!
+            console.log(data);
+            console.log(data.id);
+            user_id = data.id;
+
+            s.createPlaylist(user_id, {name: 'Related Artist Playlist'}).then(function(data3) {
+              console.log(data3);
+              playlist_id = data3.uri;
+              playlist_id = playlist_id.substring(33);
+              console.log(playlist_id);
+              console.log(user_id);
+              var song_uris = JSON.parse(sessionStorage.getItem("song_uris") || "null");
+              if (!song_uris) {
+    // There weren't any in storage, populate in another way or set dfeault
+                }
+              console.log(song_uris); //array is normally empty here
+
+
+
+
+
+              s.addTracksToPlaylist(user_id, playlist_id, song_uris).then(function(data){
+                  console.log(data);
+                });
+
+    });
+
+
+  });
+  }
+
+};
+
+window.onhashchange = function () {
+          console.log("Hash changed");
+          console.log(window.location.hash.substring(1));
+      };
+
 
 function searchArtists(originalArtist, callback) {
-  console.log('originalArtist', originalArtist);
+    $(window).on('hashchange', function() {
+      console.log(window.location.hash);
+    });
   $.getJSON("https://api.spotify.com/v1/search?type=artist&q=" + originalArtist, function(json) {
 
     $('#artist').html('<p>'+ '<img src="' + json.artists.items[0].images[2].url + '" height="100" width="100" /> ' + json.artists.items[0].name +'</p>');
@@ -108,82 +128,36 @@ function searchArtists(originalArtist, callback) {
 
       var counter = 0;
       for (var id in relatedArtists) {
-        relatedArtistsByCounter = relatedArtists[id];
-        delete relatedArtistsByCounter[id];
+        relatedArtists[counter] = relatedArtists[id];
+        delete relatedArtists[id];
         counter++;
       }
-      //console.log("1");
+
         async.times(counter, function(n, next) {
           console.log(n);
-          console.log(relatedArtistsByCounter[n].id);
+          console.log(relatedArtists[n].id);
           s.getArtistTopTracks(relatedArtists[n].id, "US", function (err, data2) {
-            relatedArtistsByCounter[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
-            relatedArtistsByCounter[n].uri = data2.tracks[0].uri;
-            //console.log(relatedArtists[n].uri);
-            //console.log(relatedArtists[n].song);
-            $('#related-artist').append('<p><strong>' + relatedArtistsByCounter[n].name + '</strong> -- \"' + relatedArtistsByCounter[n].song + '\"</p>');
-            //song_uris.push(relatedArtists[n].uri);
-            // console.log(song_uris);
-            next(null, relatedArtistsByCounter[n].uri);
-            //needs to be inside async.times and have a null error condition
+            relatedArtists[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
+            relatedArtists[n].uri = data2.tracks[0].uri;
+
+            $('#related-artist').append('<p><strong>' + relatedArtists[n].name + '</strong> -- \"' + relatedArtists[n].song + '\"</p>');
+            song_uris.push(relatedArtists[n].uri);
+
+            next(null, relatedArtists[n].uri);
+
           });
-            // next(related_artists[n].uri)
+
         }, function(err, song_uris) {
 
-          // console.log("HERE");
-          // console.log(err);
-          console.log(song_uris);
-		  // console.log(location.hash);
-          //stops working here
 
-		  spotify.addEventListener('click', function() {
-        var params = getHashParams();
+          console.log(song_uris); //array is full here
+          sessionStorage.setItem("song_uris", JSON.stringify(song_uris));
+          // Or localStorage.setItem...
 
 
- 		       console.log(params); //is an empty object
-
-           console.log(params.access_token); //is undefined
-
-
-          if (params.access_token) {
-
-          s.setAccessToken(params.access_token);
-          s.getMe().then(function(data) {
-
-            // and here it goes the user's data!!!
-            console.log(data);
-            console.log(data.id);
-            user_id = data.id;
-            // console.log(song_uris);
-            // playlists are showing up as undefined
-      // spotify:user:tenderoni-:playlist:5NPwZMgVoWo8WDTRdJ23l0
-            s.createPlaylist(user_id, {name: 'Related Artist Playlist'}).then(function(data3) {
-              console.log(data3);
-              playlist_id = data3.uri;
-              playlist_id = playlist_id.substring(33);
-              console.log(playlist_id);
-              console.log(user_id);
-              console.log(song_uris);
-
-
-
-
-
-              s.addTracksToPlaylist(user_id, playlist_id, song_uris).then(function(data){
-                  console.log(data);
-                });
-          // s.addTracksToPlaylist(user_id, playlist_id, song_uris);
-
-//            console.log("hello");
-//            callback(err, song_uris);
-
-        // console.log(song_uris);
-    });
-
-
-  });
-  }
-  }, false);
+        //   $('#spotify').submit(function(event){
+        //     event.preventDefault();
+        //     });
 
 });
 
