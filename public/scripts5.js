@@ -2,6 +2,8 @@ var $ = require('jquery');
 var Spotify = require('../node_modules/spotify-web-api-js');
 var s = new Spotify();
 var async = require('async');
+// import timesSeries from 'async/timesSeries';
+
 
 /**
  * Returns an object with the query parameters passed in the
@@ -111,7 +113,7 @@ function searchArtists(originalArtist, callback) {
         counter++;
       }
 
-        async.times(counter, function(n, next) {
+        async.timesSeries(20, function(n, next) {
 
           s.getArtistTopTracks(relatedArtists[n].id, "US", function (err, data2) {
             relatedArtists[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
