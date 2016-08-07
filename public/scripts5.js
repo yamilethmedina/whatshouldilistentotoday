@@ -122,7 +122,7 @@ function searchArtists(originalArtist, callback) {
             $('#related-artist').append('<p><strong>' + relatedArtists[n].name + '</strong> -- \"' + relatedArtists[n].song + '\"</p>');
             song_uris.push(relatedArtists[n].uri);
 
-            next(null, relatedArtists[n].uri);
+            // next(null, relatedArtists[n].uri);
 
           });
 
