@@ -12285,6 +12285,7 @@ var song_uris = [];
 $(document).ready(function($) {
   $('#s').on('submit', function() {
     searchArtists($('#originalartist').val());
+    $("#related-artist").empty();
     return false;
 
   });
@@ -12365,7 +12366,7 @@ function searchArtists(originalArtist, callback) {
         counter++;
       }
 
-        async.times(20, function(n, next) {
+        async.times(counter, function(n, next) {
 
           s.getArtistTopTracks(relatedArtists[n].id, "US", function (err, data2) {
             relatedArtists[n].song = data2.tracks[0].name; //sometimes this is a TypeError? idk
@@ -12374,7 +12375,7 @@ function searchArtists(originalArtist, callback) {
             $('#related-artist').append('<p><strong>' + relatedArtists[n].name + '</strong> -- \"' + relatedArtists[n].song + '\"</p>');
             song_uris.push(relatedArtists[n].uri);
 
-            // next(null, relatedArtists[n].uri);
+            next(null, relatedArtists[n].uri);
 
           });
 
