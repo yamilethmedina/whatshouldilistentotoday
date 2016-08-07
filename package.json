@@ -7,7 +7,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "browserify public/scripts5.js > public/bundle.js",
+    "postinstall": "browserify -e public/scripts5.js -o public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
