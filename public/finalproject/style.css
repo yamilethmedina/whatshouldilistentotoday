@@ -9,6 +9,7 @@ body {
 h1 {
     font-size: 30px;
     color: #b04d5f;
+    font-weight: 600;
 }
 
 h2 {
@@ -44,6 +45,7 @@ h2 {
 }
 
 #footer {
+    padding-top: 20px;
     font-size: 10px;
     color: #c2c2f0;
     clear: both;
@@ -99,6 +101,10 @@ button:hover {
 
 a:link {
     color: indigo;    
+}
+
+#spotify {
+    display: none;
 }
 
 #email {

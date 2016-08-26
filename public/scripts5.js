@@ -2,6 +2,7 @@ var $ = require('jquery');
 var Spotify = require('../node_modules/spotify-web-api-js');
 var s = new Spotify();
 var async = require('async');
+
 // import timesSeries from 'async/timesSeries';
 
 
@@ -124,6 +125,7 @@ function searchArtists(originalArtist, callback) {
             song_uris.push(relatedArtists[n].uri);
 
             next(null, relatedArtists[n].uri);
+            $("#spotify").css("display", "block");
 
           });
 
