@@ -97,6 +97,9 @@ function searchArtists(originalArtist, callback) {
   $.getJSON("https://api.spotify.com/v1/search?type=artist&q=" + originalArtist, function(json) {
 
     $('#artist').html('<p>'+ '<img src="' + json.artists.items[0].images[2].url + '" height="100" width="100" />  <span id="originalartistname">' + json.artists.items[0].name +'</span></p>');
+    var playlistTitle = "Related Artist Playlist - " + $('#originalartistname').text();
+            console.log(playlistTitle);
+
 
     var originalArtistId = json.artists.items[0].id;
     s.getArtistRelatedArtists(originalArtistId, function(err, data) {
