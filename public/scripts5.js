@@ -58,7 +58,7 @@ var params = getHashParams();
 
             user_id = data.id;
             
-            s.createPlaylist(user_id, {name: playlistTitle}).then(function(data3) {
+            s.createPlaylist(user_id, {name: "Related Artist Playlist - " + $('#originalartistname').text()}).then(function(data3) {
 
               playlist_id = data3.uri;
               playlist_id = playlist_id.substring(33);
@@ -96,7 +96,7 @@ function searchArtists(originalArtist, callback) {
 
     $('#artist').html('<p>'+ '<img src="' + json.artists.items[0].images[2].url + '" height="100" width="100" />  <span id="originalartistname">' + json.artists.items[0].name +'</span></p>');
     var playlistTitle = "Related Artist Playlist - " + $('#originalartistname').text();
-            console.log(playlistTitle);
+    console.log(playlistTitle);
 
 
     var originalArtistId = json.artists.items[0].id;
