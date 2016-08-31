@@ -58,7 +58,7 @@ var params = getHashParams();
 
             user_id = data.id;
             
-            s.createPlaylist(user_id, {name: '"Related Artist Playlist - " + $('#originalartistname').text()'}).then(function(data3) {
+            s.createPlaylist(user_id, {name: "Related Artist Playlist"}).then(function(data3) {
 
               playlist_id = data3.uri;
               playlist_id = playlist_id.substring(33);
