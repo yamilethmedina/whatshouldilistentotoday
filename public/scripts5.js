@@ -57,8 +57,10 @@ var params = getHashParams();
             // and here it goes the user's data!!!
 
             user_id = data.id;
+            var playlistTitle = "Related Artist Playlist - " + document.querySelector("#originalartistname").innerText;
+            console.log(playlistTitle);
 
-            s.createPlaylist(user_id, {name: 'Related Artist Playlist'}).then(function(data3) {
+            s.createPlaylist(user_id, {name: playlistTitle}).then(function(data3) {
 
               playlist_id = data3.uri;
               playlist_id = playlist_id.substring(33);
@@ -94,7 +96,7 @@ function searchArtists(originalArtist, callback) {
     });
   $.getJSON("https://api.spotify.com/v1/search?type=artist&q=" + originalArtist, function(json) {
 
-    $('#artist').html('<p>'+ '<img src="' + json.artists.items[0].images[2].url + '" height="100" width="100" /> ' + json.artists.items[0].name +'</p>');
+    $('#artist').html('<p>'+ '<img src="' + json.artists.items[0].images[2].url + '" height="100" width="100" />  <span id="originalartistname">' + json.artists.items[0].name +'</span></p>');
 
     var originalArtistId = json.artists.items[0].id;
     s.getArtistRelatedArtists(originalArtistId, function(err, data) {
