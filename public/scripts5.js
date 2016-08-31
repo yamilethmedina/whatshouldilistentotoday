@@ -57,9 +57,7 @@ var params = getHashParams();
             // and here it goes the user's data!!!
 
             user_id = data.id;
-            var playlistTitle = "Related Artist Playlist - " + document.querySelector('#originalartistname').textContent();
-            console.log(playlistTitle);
-
+            
             s.createPlaylist(user_id, {name: playlistTitle}).then(function(data3) {
 
               playlist_id = data3.uri;
