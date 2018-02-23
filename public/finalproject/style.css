@@ -22,26 +22,11 @@ h2 {
     overflow: auto;
 }
 
-/*p {*/
-/*    color: #b04d5f;*/
-/*    width: 300px;*/
-/*    height: 250px;*/
-/*    margin: 5px;*/
-/*    padding: 15px;*/
-/*    float: right;*/
-/*    position: fixed;*/
-/*}*/
-
-
 .cover {
     width: 300px;
     height: 300px;
     display: inline-block;
     background-size: cover;
-}
-
-#header {
-
 }
 
 #footer {
@@ -84,17 +69,21 @@ h2 {
     background-size: 100px;
 }
 
-button {
+.button-class {
   font-family: Candara,Calibri,Arial,sans-serif;
   color: #f8fff4;
   font-size: 14px;
   background: #b04d5f;
-  
   text-decoration: none;
   font-weight: bold;
+  display: block;
+  width: 50%;
+  padding: 15px;
+  text-align: center;
+  margin: 0 auto;
 }
 
-button:hover {
+.button-class:hover {
   background: #c591ab;
   text-decoration: none;
 }
@@ -103,10 +92,11 @@ a:link {
     color: indigo;    
 }
 
-#spotify {
-    display: none;
+.sign-in {
+    padding-bottom: 20px;
 }
 
-#email {
-    padding-bottom: 20px;
-}    
+form {
+    margin: 0 auto;
+    text-align: center;
+}
