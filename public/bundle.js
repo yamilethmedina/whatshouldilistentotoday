@@ -12871,11 +12871,11 @@ var params = getHashParams();
 
 
 
-                if (song_uris !== null) {
+                // if (song_uris !== null) {
                 s.addTracksToPlaylist(user_id, playlist_id, song_uris).then(function(data){
                         console.log("adding to new playlist");
                       });
-                  }
+                  // }
                    if (!song_uris) {
                     // There weren't any in storage, populate in another way or set default
                     console.log("Sorry, no tracks available. Please either sign in or try searching for another artist");
