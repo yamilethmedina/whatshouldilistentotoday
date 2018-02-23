@@ -12871,7 +12871,7 @@ var params = getHashParams();
 
 
 
-                if (song_uris) {
+                if (song_uris !== null) {
                 s.addTracksToPlaylist(user_id, playlist_id, song_uris).then(function(data){
                         console.log("adding to new playlist");
                       });
